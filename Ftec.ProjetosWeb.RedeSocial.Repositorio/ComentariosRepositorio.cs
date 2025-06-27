@@ -30,7 +30,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                         cmd.Connection = conexao;
                         cmd.Transaction = transacao;
                         cmd.CommandText = "UPDATE public.comentarios " +
-                                          " SET conteudo = @conteudo, " +
+                                          " SET conteudo = @conteudo " +
                                           " WHERE id_comentario = @id_comentario";
                         cmd.Parameters.AddWithValue("conteudo", comentario.Conteudo);
                         cmd.Parameters.AddWithValue("id_comentario", comentario.Id);
@@ -130,7 +130,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                     {
                         var comentario = new Comentario()
                         {
-                            Id = Guid.Parse(leitor["id"].ToString()),
+                            Id = Guid.Parse(leitor["id_comentario"].ToString()),
                             IdPost = Guid.Parse(leitor["id_post"].ToString()),
                             IdUsuario = Guid.Parse(leitor["id_usuario"].ToString()),
                             Conteudo = leitor["conteudo"].ToString(),
@@ -148,6 +148,42 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                 throw ex;
             }
 
+        }
+        public Comentario Procurar(Guid Id)
+        {
+            Comentario comentario = null;
+            try
+            {
+                using (var con = new NpgsqlConnection(strConexao))
+                {
+                    con.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandText = "SELECT * FROM comentarios WHERE id_comentario = @id_comentario";
+                    cmd.Parameters.AddWithValue("@id_comentario", Id);
+                    var leitor = cmd.ExecuteReader();
+
+                    while (leitor.Read())
+                    {
+                        comentario = new Comentario()
+                        {
+                            Id = Guid.Parse(leitor["id_comentario"].ToString()),
+                            IdPost = Guid.Parse(leitor["id_post"].ToString()),
+                            IdUsuario = Guid.Parse(leitor["id_usuario"].ToString()),
+                            Conteudo = leitor["conteudo"].ToString(),
+                            DataComentario = Convert.ToDateTime(leitor["data_comentario"].ToString()),
+                            IdComentarioPai = Guid.Parse(leitor["id_comentario_pai"].ToString()),
+                        };
+                    }
+
+                    leitor.Close();
+                }
+                return comentario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

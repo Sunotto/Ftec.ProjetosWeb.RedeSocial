@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Adapter\" />
+    <ProjectReference Include="..\Ftec.ProjetosWeb.RedeSocial.Dominio\Ftec.ProjetosWeb.RedeSocial.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

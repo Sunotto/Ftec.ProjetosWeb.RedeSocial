@@ -29,10 +29,10 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                         cmd.Connection = conexao;
                         cmd.Transaction = transacao;
                         cmd.CommandText = "UPDATE public.curtidas " +
-                                          " SET tipo_reacao = @tipo_reacao, " +
-                                          " WHERE id_post = @id_post";
-                        cmd.Parameters.AddWithValue("tipo_reacao", curtida.Reacao);
-                        cmd.Parameters.AddWithValue("id_post", curtida.Id);
+                                          " SET tipo_reacao = @tipo_reacao " +
+                                          " WHERE id_curtida = @id_curtida";
+                        cmd.Parameters.AddWithValue("tipo_reacao", (int)curtida.Reacao);
+                        cmd.Parameters.AddWithValue("id_curtida", curtida.Id);
                         cmd.ExecuteNonQuery();
 
                         cmd.Parameters.Clear();
@@ -95,8 +95,8 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                         cmd.Parameters.AddWithValue("id_curtida", curtida.Id);
                         cmd.Parameters.AddWithValue("id_usuario", curtida.IdUsuario);
                         cmd.Parameters.AddWithValue("data_curtida", curtida.DataCurtida);
-                        cmd.Parameters.AddWithValue("tipo_reacao", curtida.Reacao);
-                        cmd.Parameters.AddWithValue("id_post_pai", curtida.DataCurtida);
+                        cmd.Parameters.AddWithValue("tipo_reacao", (int)curtida.Reacao);
+                        cmd.Parameters.AddWithValue("id_post_pai", curtida.IdPostPai);
                         cmd.ExecuteNonQuery();
 
                         transacao.Commit();
@@ -109,7 +109,44 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                 }
             }
         }
-        List<Curtida> ICurtidasRepository.ProcurarTodosDoPost(Guid IdPost)
+
+        public Curtida Procurar(Guid Id)
+        {
+            Curtida curtida = null;
+            try
+            {
+                using (var con = new NpgsqlConnection(strConexao))
+                {
+                    con.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandText = "SELECT * FROM curtidas WHERE id_curtida = @id_curtida";
+                    cmd.Parameters.AddWithValue("@id_curtida", Id);
+                    var leitor = cmd.ExecuteReader();
+
+                    while (leitor.Read())
+                    {
+                        curtida = new Curtida()
+                        {
+                            Id = Guid.Parse(leitor["id_curtida"].ToString()),
+                            IdUsuario = Guid.Parse(leitor["id_usuario"].ToString()),
+                            DataCurtida = Convert.ToDateTime(leitor["data_curtida"].ToString()),
+                            Reacao = Enum.Parse<TipoReacao>(leitor["tipo_reacao"].ToString()),
+                            IdPostPai = Guid.Parse(leitor["id_post_pai"].ToString()),
+                        };
+                    }
+                    
+                    leitor.Close();
+                }
+                return curtida;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Curtida> ProcurarTodosDoPost(Guid IdPost)
         {
             List<Curtida> TodasCurtidas = new List<Curtida>();
 

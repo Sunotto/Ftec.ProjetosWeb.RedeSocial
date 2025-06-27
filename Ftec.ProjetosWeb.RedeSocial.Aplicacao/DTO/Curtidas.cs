@@ -4,22 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ftec.ProjetosWeb.RedeSocial.Dominio.Entidades
+namespace Ftec.ProjetosWeb.RedeSocial.Aplicacao.DTO
 {
-    public class Curtida
+    public class CurtidaDTO
     {
         public Guid Id { get; set; }
         public Guid IdUsuario { get; set; }
         public DateTime DataCurtida { get; set; }
         public TipoReacao Reacao { get; set; }
         public Guid IdPostPai { get; set; }
-        public Curtida()
-        {
-            this.Id = Guid.NewGuid();
-            this.IdUsuario = Guid.Empty;
-            this.DataCurtida = DateTime.MinValue;
-            this.Reacao = TipoReacao.Like;
-            this.IdPostPai = Guid.Empty;
-        }
+        
     }
 }

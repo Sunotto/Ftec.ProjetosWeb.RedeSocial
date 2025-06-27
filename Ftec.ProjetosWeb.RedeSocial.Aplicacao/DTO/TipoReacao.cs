@@ -1,4 +1,4 @@
-﻿namespace Ftec.ProjetosWeb.RedeSocial.Dominio.Entidades
+﻿namespace Ftec.ProjetosWeb.RedeSocial.Aplicacao.DTO
 {
     public enum TipoReacao
     {

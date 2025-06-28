@@ -1,12 +1,13 @@
-﻿using Ftec.ProjetosWeb.RedeSocial.Filters;
+﻿//using Ftec.ProjetosWeb.RedeSocial.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ✅ Adiciona o filtro de exceção ANTES de builder.Build()
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add<CustomExceptionFilter>(); // Aqui você usa o nome do filtro
-});
+
+//builder.services.addcontrollerswithviews(options =>
+//{
+//    options.filters.add<customexceptionfilter>(); // aqui você usa o nome do filtro
+//});
 
 
 
@@ -23,7 +24,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles(); // ⚠️ UseStaticFiles antes de routing
 
 app.UseRouting();
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",

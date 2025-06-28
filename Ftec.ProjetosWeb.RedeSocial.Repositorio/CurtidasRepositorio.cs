@@ -14,7 +14,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
         private string strConexao;
         public CurtidasRepositorio(string strConexao)
         {
-            this.strConexao = "Server=127.0.0.1;Port=5432;Database=postgres; User Id=postgres;Password=tangduva123;";
+            this.strConexao = "Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678;";
         }
         public void AlterarReacao(Curtida curtida)
         {
@@ -44,6 +44,34 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                         throw ex;
                     }
                 }
+            }
+        }
+
+        public int ContarTodos(Guid IdPost)
+        {
+            int quantidade = 0;
+
+            try
+            {
+                using (var conexao = new NpgsqlConnection(strConexao))
+                {
+                    conexao.Open();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conexao;
+                        cmd.CommandText = "SELECT COUNT(*) FROM curtidas WHERE id_post_pai = @id_post_pai";
+                        cmd.Parameters.AddWithValue("@id_post_pai", IdPost);
+
+                        quantidade = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+
+                return quantidade;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

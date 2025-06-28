@@ -55,6 +55,9 @@ namespace Ftec.ProjetosWeb.RedeSocial.Aplicacao
             return CurtidasAdapter.ParaDTO(curtida);
         }
 
-
+        public List<CurtidaDTO> ProcurarTodosDoPost()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,7 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="Views\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="Models\**" />
+    <Content Remove="Views\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="Views\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Models\**" />
+    <None Remove="Views\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\HomeController.cs" />
+    <Compile Remove="Controllers\LoginController.cs" />
+    <Compile Remove="Controllers\ProfileController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ftec.ProjetosWeb.RedeSocial.Aplicacao\Ftec.ProjetosWeb.RedeSocial.Aplicacao.csproj" />
+    <ProjectReference Include="..\Ftec.ProjetosWeb.RedeSocial.Dominio\Ftec.ProjetosWeb.RedeSocial.Dominio.csproj" />
+    <ProjectReference Include="..\Ftec.ProjetosWeb.RedeSocial.Repositorio\Ftec.ProjetosWeb.RedeSocial.Repositorio.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,5 +14,6 @@ namespace Ftec.ProjetosWeb.RedeSocial.Dominio.Repositorio
         void InserirCurtida(Curtida curtida);
         void AlterarReacao(Curtida curtida);
         bool ExcluirCurtida(Guid id);
+        int ContarTodos(Guid IdPost);
     }
 }

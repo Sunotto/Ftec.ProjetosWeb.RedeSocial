@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftec.ProjetosWeb.RedeSocial", "Ftec.ProjetosWeb.RedeSocial\Ftec.ProjetosWeb.RedeSocial.csproj", "{B564A8F6-F255-440E-8AAE-7689FD6E6E3D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicos", "Servicos", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositorio", "Repositorio", "{826B906E-B7A9-4D88-8083-35B03B6F9525}"
@@ -21,11 +19,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftec.ProjetosWeb.RedeSocial
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftec.ProjetosWeb.RedeSocial.RepositorioSQL", "Ftec.ProjetosWeb.RedeSocial.RepositorioSQL\Ftec.ProjetosWeb.RedeSocial.RepositorioSQL.csproj", "{DD9FB5D6-C0C5-4891-A779-94897BC4022D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apresentação", "Apresentação", "{5299CFE4-2C3A-4111-8C6E-C3C11FBDE465}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apresentacao", "Apresentacao", "{5299CFE4-2C3A-4111-8C6E-C3C11FBDE465}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{EAC95D82-82C7-48AC-8AB0-4282BE562AC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositorioTest", "RepositorioTest\RepositorioTest.csproj", "{C59E8852-CDCF-4730-B57F-31F3C3D6B876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftec.ProjetosWeb.RedeSocial.API", "Ftec.ProjetosWeb.RedeSocial.API\Ftec.ProjetosWeb.RedeSocial.API.csproj", "{86E6F4F0-D00E-43A1-B429-187F9FEA666F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B564A8F6-F255-440E-8AAE-7689FD6E6E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B564A8F6-F255-440E-8AAE-7689FD6E6E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B564A8F6-F255-440E-8AAE-7689FD6E6E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B564A8F6-F255-440E-8AAE-7689FD6E6E3D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DE95E3A-D37E-4160-8AE0-22563EFC0470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DE95E3A-D37E-4160-8AE0-22563EFC0470}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DE95E3A-D37E-4160-8AE0-22563EFC0470}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,18 +57,22 @@ Global
 		{C59E8852-CDCF-4730-B57F-31F3C3D6B876}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C59E8852-CDCF-4730-B57F-31F3C3D6B876}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C59E8852-CDCF-4730-B57F-31F3C3D6B876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E6F4F0-D00E-43A1-B429-187F9FEA666F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E6F4F0-D00E-43A1-B429-187F9FEA666F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E6F4F0-D00E-43A1-B429-187F9FEA666F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E6F4F0-D00E-43A1-B429-187F9FEA666F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B564A8F6-F255-440E-8AAE-7689FD6E6E3D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{5DE95E3A-D37E-4160-8AE0-22563EFC0470} = {18DB32BA-642D-45A8-A9D1-4AE7D6B85940}
 		{F1F9F899-39A2-4220-8781-3751AED2246E} = {D63195AA-54AB-4AA3-9778-B967A6A6EF52}
 		{85126A9E-77B5-4BB4-B88E-335EF1069B54} = {826B906E-B7A9-4D88-8083-35B03B6F9525}
 		{DD9FB5D6-C0C5-4891-A779-94897BC4022D} = {826B906E-B7A9-4D88-8083-35B03B6F9525}
 		{EAC95D82-82C7-48AC-8AB0-4282BE562AC1} = {5299CFE4-2C3A-4111-8C6E-C3C11FBDE465}
 		{C59E8852-CDCF-4730-B57F-31F3C3D6B876} = {826B906E-B7A9-4D88-8083-35B03B6F9525}
+		{86E6F4F0-D00E-43A1-B429-187F9FEA666F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9771171F-46A0-4983-84A0-4429A77EAD9A}

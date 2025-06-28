@@ -134,5 +134,26 @@ namespace RepositorioTest
             }
 
         }
+
+        [TestMethod]
+        public void ContarTodosTest()
+        {
+            var repo = new ComentariosRepositorio(""); // passe a string de conexão aqui, se necessário
+            var comentario = new Comentario()
+            {
+                Id = Guid.NewGuid(),
+                IdPost = Guid.NewGuid(),
+                IdUsuario = Guid.NewGuid(),
+                Conteudo = "Comentário para teste de contagem",
+                DataComentario = DateTime.Now,
+                IdComentarioPai = Guid.Empty
+            };
+
+            repo.InserirComentario(comentario);
+
+            int total = repo.ContarTodos(comentario.IdPost);
+
+            Assert.IsTrue(total > 0, "O total de comentários deveria ser maior que 0.");
+        }
     }
 }

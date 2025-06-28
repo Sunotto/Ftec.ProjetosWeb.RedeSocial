@@ -14,7 +14,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
         private string strConexao;
         public ComentariosRepositorio(string strConexao)
         {
-            this.strConexao = "Server=127.0.0.1;Port=5432;Database=postgres; User Id=postgres;Password=tangduva123;";
+            this.strConexao = "Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678;";
         }
 
         public void EditarComentario(Comentario comentario)
@@ -179,6 +179,34 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                     leitor.Close();
                 }
                 return comentario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int ContarTodos(Guid IdPost)
+        {
+            int quantidade = 0;
+
+            try
+            {
+                using (var conexao = new NpgsqlConnection(strConexao))
+                {
+                    conexao.Open();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conexao;
+                        cmd.CommandText = "SELECT COUNT(*) FROM comentarios WHERE id_post = @id_post";
+                        cmd.Parameters.AddWithValue("@id_post", IdPost);
+
+                        quantidade = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+
+                return quantidade;
             }
             catch (Exception ex)
             {

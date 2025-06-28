@@ -128,5 +128,26 @@ namespace RepositorioTest
             }
 
         }
+
+        [TestMethod]
+        public void ContarTodosTest()
+        {
+            var repo = new CurtidasRepositorio(""); // passe a string de conexão aqui, se necessário
+            var curtida = new Curtida()
+            {
+                Id = Guid.NewGuid(),
+                IdUsuario = Guid.NewGuid(),
+                IdPostPai = Guid.NewGuid(),
+                DataCurtida = DateTime.Now,
+                Reacao = TipoReacao.Like
+            };
+
+            repo.InserirCurtida(curtida);
+
+            int total = repo.ContarTodos(curtida.IdPostPai);
+
+            Assert.IsTrue(total > 0, "O total de curtidas deveria ser maior que 0.");
+        }
+        
     }
 }

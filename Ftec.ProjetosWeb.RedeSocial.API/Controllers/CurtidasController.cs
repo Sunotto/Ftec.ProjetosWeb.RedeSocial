@@ -28,17 +28,17 @@ namespace Ftec.ProjetosWeb.RedeSocial.API.Controllers
             return Ok(curtida);
         }
 
-        [HttpGet("post/{idPost}")]
-        public ActionResult<List<Curtida>> GetPorPost(Guid idPost)
+        [HttpGet("post/{IdPostPai}")]
+        public ActionResult<List<Curtida>> GetPorPost(Guid IdPostPai)
         {
-            var curtidas = _repositorio.ProcurarTodosDoPost(idPost);
+            var curtidas = _repositorio.ProcurarTodosDoPost(IdPostPai);
             return Ok(curtidas);
         }
 
-        [HttpGet("post/{idPost}/count")]
-        public ActionResult<int> Contar(Guid idPost)
+        [HttpGet("post/{IdPostPai}/count")]
+        public ActionResult<int> Contar(Guid IdPostPai)
         {
-            var total = _repositorio.ContarTodos(idPost);
+            var total = _repositorio.ContarTodos(IdPostPai);
             return Ok(total);
         }
 

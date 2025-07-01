@@ -174,7 +174,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
             }
         }
 
-        public List<Curtida> ProcurarTodosDoPost(Guid IdPost)
+        public List<Curtida> ProcurarTodosDoPost(Guid IdPostPai)
         {
             List<Curtida> TodasCurtidas = new List<Curtida>();
 
@@ -185,8 +185,8 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                     con.Open();
                     NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = con;
-                    cmd.CommandText = "SELECT * FROM curtidas WHERE id_post = @id_post";
-                    cmd.Parameters.AddWithValue("@id_post", IdPost);
+                    cmd.CommandText = "SELECT * FROM curtidas WHERE id_post_pai = @id_post_pai";
+                    cmd.Parameters.AddWithValue("@id_post_pai", IdPostPai);
                     var leitor = cmd.ExecuteReader();
                     while (leitor.Read())
                     {

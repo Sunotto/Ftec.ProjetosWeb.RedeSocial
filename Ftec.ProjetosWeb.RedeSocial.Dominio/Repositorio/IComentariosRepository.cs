@@ -15,5 +15,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Dominio.Repositorio
         void EditarComentario(Comentario comentario);
         bool ExcluirComentario(Guid id);
         int ContarTodos(Guid IdPost);
+        void ResponderComentario(Comentario resposta);
+
     }
 }

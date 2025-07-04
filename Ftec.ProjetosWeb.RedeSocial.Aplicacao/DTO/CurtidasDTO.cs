@@ -15,4 +15,15 @@ namespace Ftec.ProjetosWeb.RedeSocial.Aplicacao.DTO
         public Guid IdPostPai { get; set; }
         
     }
+
+    public enum TipoReacao
+    {
+        Like = 0,
+        Love = 1,
+        Happy = 2,
+        HaHa = 3,
+        Think = 4,
+        Sade = 5,
+        Lovely = 6
+    }
 }

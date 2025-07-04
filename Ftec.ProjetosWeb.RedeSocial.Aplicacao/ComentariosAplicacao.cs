@@ -53,6 +53,22 @@ namespace Ftec.ProjetosWeb.RedeSocial.Aplicacao
             var comentario = ComentariosRepository.Procurar(id);
             return ComentariosAdapter.ParaDTO(comentario);
         }
+        public Guid ResponderComentario(ComentarioDTO comentario)
+        {
+            if (comentario == null)
+                throw new ApplicationException("Comentário vazio!");
+
+            if (comentario.IdComentarioPai == Guid.Empty)
+                throw new ApplicationException("Comentário pai é obrigatório para uma resposta.");
+
+            comentario.Id = Guid.NewGuid();
+            comentario.DataComentario = DateTime.Now;
+
+            var comentarioEntidade = ComentariosAdapter.ParaDomain(comentario);
+            ComentariosRepository.InserirComentario(comentarioEntidade);
+
+            return comentario.Id;
+        }
 
     }
 }

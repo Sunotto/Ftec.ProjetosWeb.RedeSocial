@@ -14,7 +14,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
         private string strConexao;
         public CurtidasRepositorio(string strConexao)
         {
-            this.strConexao = "Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678;";
+            this.strConexao = strConexao;
         }
         public void AlterarReacao(Curtida curtida)
         {

@@ -14,7 +14,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
         private string strConexao;
         public ComentariosRepositorio(string strConexao)
         {
-            this.strConexao = "Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678;";
+            this.strConexao = strConexao;
         }
 
         public void EditarComentario(Comentario comentario)
@@ -213,5 +213,15 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                 throw ex;
             }
         }
+
+        public void ResponderComentario(Comentario resposta)
+        {
+            if (resposta.IdComentarioPai == Guid.Empty)
+                throw new ArgumentException("Uma resposta precisa de um comentário pai.");
+
+            InserirComentario(resposta);
+        }
+
+
     }
 }

@@ -41,15 +41,15 @@ builder.Services.AddScoped<CurtidasAplicacao>();
 var app = builder.Build();
 
 // 4. Usa Swagger no ambiente de desenvolvimento
-if (app.Environment.IsDevelopment())
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty; // Swagger na raiz do projeto
-    });
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty; // Deixa o Swagger na raiz (http://localhost:1001/)
+});
+
+
 
 // 5. Middleware padrão
 app.UseAuthorization();

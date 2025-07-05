@@ -46,14 +46,22 @@ namespace Ftec.ProjetosWeb.RedeSocial.Aplicacao.Adapter
         }
         public static CurtidaDTO ParaDTO(Curtida curtida)
         {
-            return new CurtidaDTO()
+
+            if (curtida == null)
             {
-                Id = curtida.Id,
-                IdUsuario = curtida.IdUsuario,
-                DataCurtida = curtida.DataCurtida,
-                Reacao = (DTO.TipoReacao)(Dominio.Entidades.TipoReacao)curtida.Reacao,
-                IdPostPai = curtida.IdPostPai,
-            };
+                return null;
+            }
+            else
+            {
+                return new CurtidaDTO()
+                {
+                    Id = curtida.Id,
+                    IdUsuario = curtida.IdUsuario,
+                    DataCurtida = curtida.DataCurtida,
+                    Reacao = (DTO.TipoReacao)(Dominio.Entidades.TipoReacao)curtida.Reacao,
+                    IdPostPai = curtida.IdPostPai,
+                };
+            }
         }
     }
 }

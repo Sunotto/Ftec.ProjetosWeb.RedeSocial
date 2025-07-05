@@ -47,15 +47,22 @@ namespace Ftec.ProjetosWeb.RedeSocial.Aplicacao.Adapter
         }
         public static ComentarioDTO ParaDTO(Comentario comentario)
         {
-            return new ComentarioDTO()
+            if (comentario == null)
             {
-                Id = comentario.Id,
-                IdPost = comentario.IdPost,
-                IdUsuario = comentario.IdUsuario,
-                Conteudo = comentario.Conteudo,
-                DataComentario = comentario.DataComentario,
-                IdComentarioPai = comentario.IdComentarioPai
-            };
+                return null;
+            }
+            else
+            {
+                return new ComentarioDTO()
+                {
+                    Id = comentario.Id,
+                    IdPost = comentario.IdPost,
+                    IdUsuario = comentario.IdUsuario,
+                    Conteudo = comentario.Conteudo,
+                    DataComentario = comentario.DataComentario,
+                    IdComentarioPai = comentario.IdComentarioPai
+                };
+            }                
         }
     }
 }

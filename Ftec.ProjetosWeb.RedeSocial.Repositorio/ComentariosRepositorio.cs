@@ -135,7 +135,9 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                             IdUsuario = Guid.Parse(leitor["id_usuario"].ToString()),
                             Conteudo = leitor["conteudo"].ToString(),
                             DataComentario = Convert.ToDateTime(leitor["data_comentario"].ToString()),
-                            IdComentarioPai = Guid.Parse(leitor["id_comentario_pai"].ToString()),
+                            IdComentarioPai = leitor["id_comentario_pai"] == DBNull.Value
+                                ? Guid.Empty
+                                : Guid.Parse(leitor["id_comentario_pai"].ToString()),
                         };
                         TodosComentarios.Add(comentario);
                     }
@@ -172,7 +174,9 @@ namespace Ftec.ProjetosWeb.RedeSocial.Repositorio
                             IdUsuario = Guid.Parse(leitor["id_usuario"].ToString()),
                             Conteudo = leitor["conteudo"].ToString(),
                             DataComentario = Convert.ToDateTime(leitor["data_comentario"].ToString()),
-                            IdComentarioPai = Guid.Parse(leitor["id_comentario_pai"].ToString()),
+                            IdComentarioPai = leitor["id_comentario_pai"] == DBNull.Value
+                                ? Guid.Empty
+                                : Guid.Parse(leitor["id_comentario_pai"].ToString()),
                         };
                     }
 

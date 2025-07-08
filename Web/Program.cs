@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews(); // Se você usa Razor Views
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
@@ -21,7 +22,7 @@ app.UseAuthorization();
 // Mapeamento de rotas padrão (MVC)
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Feed}/{action=Feed}/{id?}");
 
 // Se tiver apenas Web API (sem views), use só:
 app.MapControllers();

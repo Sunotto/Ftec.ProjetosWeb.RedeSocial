@@ -1,4 +1,6 @@
-﻿@*
+﻿@model Web.Models.SignUpViewModel
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -70,34 +72,67 @@
                         <div class="sign-in-from">
                             <h1 class="mb-0">Sign Up</h1>
                             <p>Enter your email address and password to access admin panel.</p>
-                            <form class="mt-4">
+
+                            @if (ViewBag.Erro != null)
+                            {
+                                <div class="alert alert-danger">@ViewBag.Erro</div>
+                            }
+
+                            @if (TempData["Mensagem"] != null)
+                            {
+                                <div class="alert alert-success">@TempData["Mensagem"]</div>
+                            }
+
+                            <form class="mt-4" asp-controller="Login" asp-action="SignUp" method="post">
                                 <div class="form-group">
-                                    <label class="form-label" for="exampleInputEmail1">Your Full Name</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Your Full Name">
+                                    <label class="form-label" asp-for="Username">Nome de usuário</label>
+                                    <input class="form-control mb-0" asp-for="Username" placeholder="Your Full Name" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="exampleInputEmail2">Email address</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail2" placeholder="Enter email">
+                                    <label class="form-label" asp-for="Email">Endereço de Email</label>
+                                    <input class="form-control mb-0" asp-for="Email" placeholder="Enter email" type="email" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
+                                    <label class="form-label" asp-for="Senha">Senha</label>
+                                    <input class="form-control mb-0" asp-for="Senha" placeholder="Password" type="password" />
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="NomeCompleto">Nome Completo</label>
+                                    <input class="form-control mb-0" asp-for="NomeCompleto" placeholder="Full name" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="Telefone">Telefone</label>
+                                    <input class="form-control mb-0" asp-for="Telefone" placeholder="Phone number" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="Genero">Gênero</label>
+                                    <input class="form-control mb-0" asp-for="Genero" placeholder="Ex: M ou F" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="Descricao">Descrição</label>
+                                    <textarea class="form-control mb-0" asp-for="Descricao" placeholder="Say something about yourself"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="Foto">URL da Foto</label>
+                                    <input class="form-control mb-0" asp-for="Foto" placeholder="https://...jpg" />
+                                </div>
+
                                 <div class="d-inline-block w-100">
                                     <div class="form-check d-inline-block mt-2 pt-1">
-                                        <input type="checkbox" class="form-check-input" id="customCheck1">
-                                        <label class="form-check-label" for="customCheck1">I accept <a href="#">Terms and Conditions</a></label>
+                                        <input type="checkbox" class="form-check-input" id="customCheck1" required />
+                                        <label class="form-check-label" for="customCheck1">I accept <a href="#">Termos e condições</a></label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary float-end">Sign Up</button>
+                                    <button type="submit" class="btn btn-primary float-end">Registrar-se</button>
                                 </div>
                                 <div class="sign-info">
-                                    <span class="dark-color d-inline-block line-height-2">Already Have Account ? <a asp-controller="Login" asp-action="SignIn">Log In</a></span>
-                                    <ul class="iq-social-media">
-                                        <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
-                                        <li><a href="#"><i class="ri-twitter-line"></i></a></li>
-                                        <li><a href="#"><i class="ri-instagram-line"></i></a></li>
-                                    </ul>
+                                    <span class="dark-color d-inline-block line-height-2">
+                                        Já tem uma conta?
+                                        <a asp-controller="Login" asp-action="SignIn">Conectar-se</a>
+                                        <br />
+                                    </span>
                                 </div>
+
                             </form>
                         </div>
                     </div>

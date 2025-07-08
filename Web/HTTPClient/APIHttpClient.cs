@@ -1,32 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Web;
 
 namespace Web.HTTPClient
 {
-   
-
     public class APIHttpClient
     {
-        private string baseAPI = "http://localhost:3809/api/";
+        private readonly string baseAPI;
+
         public APIHttpClient(string baseAPI)
         {
             this.baseAPI = baseAPI;
         }
 
-        public Guid Put<T>(string action, Guid id, T data)
+        private HttpClient CriarHttpClient(string token = null)
         {
-            
-            using (var client = new HttpClient())
+            var client = new HttpClient
             {
-                client.BaseAddress = new Uri(baseAPI);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                BaseAddress = new Uri(baseAPI)
+            };
 
-                HttpResponseMessage response = client.PutAsJsonAsync(action + id.ToString(), data).Result;
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            if (!string.IsNullOrEmpty(token))
+            {
+                client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+            }
+
+            return client;
+        }
+
+        public Guid Post<T>(string action, T data, string token = null)
+        {
+            using (var client = CriarHttpClient(token))
+            {
+                var response = client.PostAsJsonAsync(action, data).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var sucesso = response.Content.ReadAsAsync<Guid>().Result;
@@ -39,15 +51,11 @@ namespace Web.HTTPClient
             }
         }
 
-        public Guid Post<T>(string action, T data)
+        public Guid Put<T>(string action, Guid id, T data, string token = null)
         {
-            using (var client = new HttpClient())
+            using (var client = CriarHttpClient(token))
             {
-                client.BaseAddress = new Uri(baseAPI);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = client.PostAsJsonAsync(action, data).Result;
+                var response = client.PutAsJsonAsync(action + id, data).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var sucesso = response.Content.ReadAsAsync<Guid>().Result;
@@ -60,38 +68,28 @@ namespace Web.HTTPClient
             }
         }
 
-        public T Get<T>(string actionUri)
+        public T Get<T>(string actionUri, string token = null)
         {
-            using (var client = new HttpClient())
+            using (var client = CriarHttpClient(token))
             {
-                client.BaseAddress = new Uri(baseAPI);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = client.GetAsync(actionUri).Result;
+                var response = client.GetAsync(actionUri).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    T sucesso = response.Content.ReadAsAsync<T>().Result;
+                    var sucesso = response.Content.ReadAsAsync<T>().Result;
                     return sucesso;
                 }
                 else
                 {
-                    //Pode-se registrar as falhas neste local
-                    //joga para o cliente a falha
                     throw new Exception(response.Content.ReadAsStringAsync().Result);
                 }
             }
         }
 
-        public T Delete<T>(string action, Guid id)
+        public T Delete<T>(string action, Guid id, string token = null)
         {
-            using (var client = new HttpClient())
+            using (var client = CriarHttpClient(token))
             {
-                client.BaseAddress = new Uri(baseAPI);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = client.DeleteAsync(action + id.ToString()).Result;
+                var response = client.DeleteAsync(action + id).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var sucesso = response.Content.ReadAsAsync<T>().Result;

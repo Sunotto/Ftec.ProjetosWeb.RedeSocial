@@ -8,7 +8,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly APIHttpClient _api = new APIHttpClient("https://localhost:5001/api/");
+        private readonly APIHttpClient _api = new APIHttpClient("http://feed.neurosky.com.br/api/");
 
 
         public HomeController(ILogger<HomeController> logger)

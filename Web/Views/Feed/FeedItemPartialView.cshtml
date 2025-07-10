@@ -1,0 +1,208 @@
+﻿@model FeedItemViewModel
+
+@{
+    var post = Model;
+}
+<script>
+    fetch('/api/Comentarios/post/@post.Id')
+            .then(response => response.json())
+            .then(data => {
+                console.log("Comentários recebidos:", data);
+                // aqui você renderiza na tela como quiser
+            })
+            .catch(error => console.error("Erro ao buscar comentários:", error));
+</script>
+
+<div class="col-sm-12">
+    <div class="card card-block card-stretch card-height">
+        <div class="card-body">
+            <div class="user-post-data">
+                <div class="d-flex justify-content-between">
+                    <div class="me-3">
+                        <img class="rounded-circle img-fluid" src="~/assets/images/user/01.jpg" alt="">
+                    </div>
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between">
+                            <div class="">
+                                <h5 class="mb-0 d-inline-block">Anna Sthesia</h5>
+                                <p class="mb-0 text-primary">Just Now</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <p>@post.TextPreview</p> @*texto do post*@
+            </div>
+            <div class="user-post">
+                <div class=" d-grid grid-rows-2 grid-flow-col gap-3"> 
+                    @* <div class="row-span-2 row-span-md-1">
+                        <img src="@post.LinkImagem" alt="post-image" class="img-fluid rounded w-100">
+                    </div> *@
+                </div>
+            </div>
+            <div class="comment-area mt-3">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="like-block position-relative d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="like-data">
+                                <div class="dropdown">
+                                    <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                                        <img src="~/assets/images/icon/01.png" class="img-fluid" alt="">
+                                    </span>
+                                    <div class="dropdown-menu py-2">
+                                        <a class="ms-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Like"><img src="~/assets/images/icon/01.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Love"><img src="~/assets/images/icon/02.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Happy"><img src="~/assets/images/icon/03.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="HaHa"><img src="~/assets/images/icon/04.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Think"><img src="~/assets/images/icon/05.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Sade"><img src="~/assets/images/icon/06.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Lovely"><img src="~/assets/images/icon/07.png" class="img-fluid" alt=""></a>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="total-like-block ms-2 me-3">
+
+                                @* <script>
+                                    fetch('/api/Comentarios/post/@post.Id')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            console.log("Comentários recebidos:", data);
+                                            // aqui você renderiza na tela como quiser
+                                        })
+                                        .catch(error => console.error("Erro ao buscar comentários:", error));
+
+                                </script> *@
+
+                                <div class="dropdown">
+                                    <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                                        @post.LikeCount
+                                    </span>
+                                    <div class="dropdown-menu"> @* lista de pessoas que curtiram *@
+                                        <a class="dropdown-item" href="#">Max Emum</a>
+                                        <a class="dropdown-item" href="#">Bill Yerds</a>
+                                        <a class="dropdown-item" href="#">Hap E. Birthday</a>
+                                        <a class="dropdown-item" href="#">Tara Misu</a>
+                                        <a class="dropdown-item" href="#">Midge Itz</a>
+                                        <a class="dropdown-item" href="#">Sal Vidge</a>
+                                        <a class="dropdown-item" href="#">Other</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="total-comment-block">
+                            <div class="dropdown">
+                                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                                    @post.CommentCount
+                                </span>
+                                <div class="dropdown-menu"> @* lista de pessoas que comentaram *@
+                                    <a class="dropdown-item" href="#">Max Emum</a>
+                                    <a class="dropdown-item" href="#">Bill Yerds</a>
+                                    <a class="dropdown-item" href="#">Hap E. Birthday</a>
+                                    <a class="dropdown-item" href="#">Tara Misu</a>
+                                    <a class="dropdown-item" href="#">Midge Itz</a>
+                                    <a class="dropdown-item" href="#">Sal Vidge</a>
+                                    <a class="dropdown-item" href="#">Other</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr> @* Comentários *@
+                <ul class="post-comments list-inline p-0 m-0">
+                    <li class="mb-2">
+                        <div class="d-flex">
+
+
+                            <div class="user-img">
+                                <img src="~/assets/images/user/02.jpg" alt="userimg" class="avatar-35 rounded-circle img-fluid"> @* Imagem do Usuário que comentou *@
+                            </div>
+                            <div class="comment-data-block ms-3">
+                                <h6>Monty Carlo</h6>
+                                <p class="mb-0">Lorem ipsum dolor sit amet</p>
+                                <div class="d-flex flex-wrap align-items-center comment-activity">
+                                    <a href="javascript:void();">like</a>
+                                    <a href="javascript:void();">reply</a>
+                                    <a href="javascript:void();">translate</a>
+                                    <span> 5 min </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex">
+                            <div class="user-img">
+                                <img src="~/assets/images/user/03.jpg" alt="userimg" class="avatar-35 rounded-circle img-fluid">
+                            </div>
+                            <div class="comment-data-block ms-3">
+                                <h6>Paul Molive</h6>
+                                <p class="mb-0">Lorem ipsum dolor sit amet</p>
+                                <div class="d-flex flex-wrap align-items-center comment-activity">
+                                    <a href="javascript:void();">like</a>
+                                    <a href="javascript:void();">reply</a>
+                                    <a href="javascript:void();">translate</a>
+                                    <span> 5 min </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <form class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">
+                    <input type="text" class="form-control rounded" placeholder="Escreva seu comentário">
+                    <div class="comment-attagement d-flex">
+                        <a href="javascript:void();"><i class="ri-link me-3"></i></a>
+                        <a href="javascript:void();"><i class="ri-user-smile-line me-3"></i></a>
+                        <a href="javascript:void();"><i class="ri-camera-line me-3"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+     @section Scripts {
+    <script>
+        function carregarComentarios(postId) {
+            const container = document.getElementById("comentarios-" + postId);
+            container.innerHTML = "Carregando...";
+
+            fetch(`/api/Comentarios/post/` + @post.Id)
+                .then(response => response.json())
+                .then(data => {
+                    // data agora é um ARRAY de objetos
+                    container.innerHTML = ''; // limpa o conteúdo anterior
+                    data.forEach(comentario => {
+                        const el = document.createElement("div");
+                        el.classList.add("comentario");
+
+                        el.innerHTML = `
+                            <p><strong>${comentario.idUsuario}</strong>: ${comentario.conteudo}</p>
+                            <small>${new Date(comentario.dataComentario).toLocaleString()}</small>
+                        `;
+
+                        container.appendChild(el);
+                    });
+                })
+                .catch(error => {
+                    container.innerHTML = "Erro ao carregar comentários.";
+                    console.error("Erro:", error);
+                });
+        }
+
+        function carregarUsuario(@post.UserId) {
+
+            fetch(`http://usuario.neurosky.com.br/api/` + @post.Id)
+                .then(response => response.json())
+                .then(data => {
+                    // data agora é um ARRAY de objetos
+                })
+                .catch(error => {
+                    container.innerHTML = "Erro ao carregar comentários.";
+                    console.error("Erro:", error);
+                });
+        }
+    </script>
+    } 

@@ -90,7 +90,7 @@ namespace Ftec.ProjetosWeb.RedeSocial.Controllers
         {
             return View();
         }
-        public IActionResult ConfirmMail()
+        public IActionResult AceitarMail()
         {
             return View();
         }

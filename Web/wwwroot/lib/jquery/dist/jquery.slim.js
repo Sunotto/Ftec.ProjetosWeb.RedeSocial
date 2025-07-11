@@ -4464,7 +4464,7 @@ var isHiddenWithinTree = function( elem, el ) {
 
 			// Otherwise, check computed style
 			// Support: Firefox <=43 - 45
-			// Disconnected elements can have computed display: none, so first confirm that elem is
+			// Disconnected elements can have computed display: none, so first Aceitar that elem is
 			// in the document.
 			isAttached( elem ) &&
 

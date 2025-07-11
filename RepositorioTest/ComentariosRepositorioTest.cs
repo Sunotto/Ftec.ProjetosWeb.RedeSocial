@@ -11,7 +11,7 @@ namespace RepositorioTest
         public void InserirTeste()
         {
             var comentario = new Comentario();
-            var comentarioRepositorio = new ComentariosRepositorio("Server=172.16.29.37;Port=5432;Database=grupo3; User Id=postgres;Password=217799");
+            var comentarioRepositorio = new ComentariosRepositorio("Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678");
             try
             {
                 comentario.Id = Guid.NewGuid();
@@ -34,7 +34,7 @@ namespace RepositorioTest
         public void ExcluirTeste()
         {
             var comentario = new Comentario();
-            var comentarioRepositorio = new ComentariosRepositorio("Server=172.16.29.37;Port=5432;Database=grupo3; User Id=postgres;Password=217799");
+            var comentarioRepositorio = new ComentariosRepositorio("Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678");
             try
             {
                 comentario.Id = Guid.NewGuid();
@@ -60,7 +60,7 @@ namespace RepositorioTest
         public void ProcurarTeste()
         {
             var comentario = new Comentario();
-            var comentarioRepositorio = new ComentariosRepositorio("Server=172.16.29.37;Port=5432;Database=grupo3; User Id=postgres;Password=217799");
+            var comentarioRepositorio = new ComentariosRepositorio("Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678");
             try
             {
                 comentario.Id = Guid.NewGuid();
@@ -85,7 +85,7 @@ namespace RepositorioTest
         public void ProcurarTodosTeste()
         {
             var comentario = new Comentario();
-            var comentarioRepositorio = new ComentariosRepositorio("Server=172.16.29.37;Port=5432;Database=grupo3; User Id=postgres;Password=217799");
+            var comentarioRepositorio = new ComentariosRepositorio("Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678");
             try
             {
                 comentario.Id = Guid.NewGuid();
@@ -119,7 +119,7 @@ namespace RepositorioTest
                 IdComentarioPai = Guid.Empty,
             };
 
-            var comentarioRepositorio = new ComentariosRepositorio("Server=172.16.29.37;Port=5432;Database=grupo3; User Id=postgres;Password=217799");
+            var comentarioRepositorio = new ComentariosRepositorio("Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678");
             try
             {
                 comentarioRepositorio.InserirComentario(comentario);
@@ -139,7 +139,7 @@ namespace RepositorioTest
         [TestMethod]
         public void ContarTodosTest()
         {
-            var repo = new ComentariosRepositorio("Server=172.16.29.37;Port=5432;Database=grupo3; User Id=postgres;Password=217799"); // passe a string de conexão aqui, se necessário
+            var repo = new ComentariosRepositorio("Server=191.242.230.255;Port=5432;Database=curtida; User Id=postgres;Password=12345678"); // passe a string de conexão aqui, se necessário
             var comentario = new Comentario()
             {
                 Id = Guid.NewGuid(),

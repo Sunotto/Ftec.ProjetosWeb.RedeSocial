@@ -201,18 +201,18 @@ Index Of Script
         });
 
         /*---------------------------------------------------------------------
-        Confirm Button
+        Aceitar Button
         -----------------------------------------------------------------------*/
 
         // $(document).ready(function () {
-        //     $(".confirm-btn").click(function () {
+        //     $(".Aceitar-btn").click(function () {
         //         $(".request-btn").toggle();
-        //         $(".confirm-btn").last().remove();
+        //         $(".Aceitar-btn").last().remove();
         //     });
         // });
 
-        $('.confirm-btn').on('click',function() {
-            $(this).closest('.confirm-click-btn').find('.request-btn').hide()
+        $('.Aceitar-btn').on('click',function() {
+            $(this).closest('.Aceitar-click-btn').find('.request-btn').hide()
         }) 
 
         /*---------------------------------------------------------------------
@@ -537,7 +537,7 @@ Index Of Script
             const closestElem = $(this).attr('data-closest-elem')
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                    confirmButton: 'btn btn-primary btn-lg',
+                    AceitarButton: 'btn btn-primary btn-lg',
                     cancelButton: 'btn btn-outline-primary btn-lg ms-2'
                 },
                 buttonsStyling: false
@@ -548,7 +548,7 @@ Index Of Script
                     text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
+                    AceitarButtonText: 'Yes, delete it!',
                     showClass: {
                         popup: 'animate__animated animate__zoomIn'
                     },
@@ -557,7 +557,7 @@ Index Of Script
                     }
                 })
                 .then((willDelete) => {
-                    if (willDelete.isConfirmed) {
+                    if (willDelete.isAceitared) {
                         swalWithBootstrapButtons.fire({
                             title: 'Deleted!',
                             text: "Your Request has been deleted.",
@@ -594,12 +594,12 @@ Index Of Script
             Swal.fire({
                 icon: 'warning',
                 title: 'Changes are not saved',
-                showConfirmButton: false,
+                showAceitarButton: false,
 
             })
         });
 
-        $('#confirmation').on('click', function() {
+        $('#Aceitaration').on('click', function() {
             Swal.fire({
                     title: "Are you sure?",
                     text: "Once deleted, you will not be able to recover this imaginary file!",

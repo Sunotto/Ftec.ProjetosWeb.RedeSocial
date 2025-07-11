@@ -1,0 +1,197 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model FeedCompletoViewModel
+
+<div id="content-page" class="content-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 row m-0 p-0">
+                <div class="col-sm-12">
+                    <div id="post-modal-data" class="card card-block card-stretch card-height">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Nova Postagem</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="user-img">
+                                    <img src="~/assets/images/user/1.jpg" alt="userimg" class="avatar-60 rounded-circle">
+                                </div>
+                                <form class="post-text ms-3 w-100 " data-bs-toggle="modal" data-bs-target="#post-modal" action="javascript:void();">
+                                    <input type="text" class="form-control rounded" placeholder="No que está pensando?..." style="border:none;">
+                                </form>
+                            </div>
+                            <hr>
+                            <ul class=" post-opt-block d-flex list-inline m-0 p-0 flex-wrap">
+                                <li class="me-3 mb-md-0 mb-2">
+                                    <a href="#" class="btn btn-soft-primary">
+                                        <img src="~/assets/images/small/07.png" alt="icon" class="img-fluid me-2"> Foto
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal fade" id="post-modal" tabindex="-1" aria-labelledby="post-modalLabel" aria-hidden="true">
+                            <div class="modal-dialog   modal-fullscreen-sm-down">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="post-modalLabel">Create Post</h5>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="ri-close-fill"></i></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-img">
+                                                <img src="~/assets/images/user/1.jpg" alt="userimg" class="avatar-60 rounded-circle img-fluid">
+                                            </div>
+                                            <form id="formPostagem" class="post-text ms-3 w-100" action="javascript:void();">
+                                                <input id="postagem" type="text" class="form-control rounded" placeholder="No que está pensando?..." style="border:none;">
+                                            </form>
+                                        </div>
+                                        <hr>
+                                        <ul class="d-flex flex-wrap align-items-center list-inline m-0 p-0">
+                                            <li class="col-md-6 mb-3">
+                                                <div class="bg-soft-primary rounded p-2 pointer me-3"><a href="#"></a><img src="~/assets/images/small/07.png" alt="icon" class="img-fluid"> Foto</div>
+                                            </li>
+                                        </ul>
+                                        <hr>
+                                        <button id="btnPostar" type="submit" class="btn btn-primary d-block w-100 mt-3">Postar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="container mt-4">
+                        <h2>Feed</h2>
+
+                        @if (ViewBag.Erro != null)
+                        {
+                            <div class="alert alert-danger">@ViewBag.Erro</div>
+                        }
+
+                        @foreach (var item in Model.Feed)
+                        {
+
+                            @await Html.PartialAsync("FeedItemPartialView", item)
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Stories</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="media-story list-inline m-0 p-0">
+                            <li class="d-flex mb-3 align-items-center">
+                                <i class="ri-add-line"></i>
+                                <div class="stories-data ms-3">
+                                    <h5>Creat Your Story</h5>
+                                    <p class="mb-0">Crie sua história</p>
+                                </div>
+                            </li>
+                            <li class="d-flex mb-3 align-items-center active">
+                                <img src="~/assets/images/page-img/s2.jpg" alt="story-img" class="rounded-circle img-fluid">
+                                <div class="stories-data ms-3">
+                                    <h5>Anna Mull</h5>
+                                    <p class="mb-0">1 horas atrás</p>
+                                </div>
+                            </li>
+                            <li class="d-flex mb-3 align-items-center">
+                                <img src="~/assets/images/page-img/s3.jpg" alt="story-img" class="rounded-circle img-fluid">
+                                <div class="stories-data ms-3">
+                                    <h5>Ira Membrit</h5>
+                                    <p class="mb-0">4 horass atrás</p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <img src="~/assets/images/page-img/s1.jpg" alt="story-img" class="rounded-circle img-fluid">
+                                <div class="stories-data ms-3">
+                                    <h5>Bob Frapples</h5>
+                                    <p class="mb-0">9 horas atrás</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-primary d-block mt-3">See All</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-12 text-center">
+                <img src="~/assets/images/page-img/page-load-loader.gif" alt="loader" style="height: 100px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Backend Bundle JavaScript -->
+    <script src="~/assets/js/libs.min.js"></script>
+    <!-- slider JavaScript -->
+    <script src="~/assets/js/slider.js"></script>
+    <!-- masonry JavaScript -->
+    <script src="~/assets/js/masonry.pkgd.min.js"></script>
+    <!-- SweetAlert JavaScript -->
+    <script src="~/assets/js/enchanter.js"></script>
+    <!-- SweetAlert JavaScript -->
+    <script src="~/assets/js/sweetalert.js"></script>
+    <!-- app JavaScript -->
+    <script src="~/assets/js/charts/weather-chart.js"></script>
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+    <script src="~/assets/js/lottie.js"></script>
+
+    <script>
+        $('#btnPostar').on('click', function () {
+            $('#formPostagem').submit(); // Dispara o submit manualmente
+        });
+
+        $('#formPostagem').on('submit', function (e) {
+            e.preventDefault(); // Impede o envio tradicional do form
+
+            // Captura o conteúdo e remove espaços em branco do início/fim
+            var texto = $('#postagem').val().trim();
+
+            // Validação: se estiver vazio, mostra alerta e para o envio
+            if (texto === "") {
+                alert("O campo de postagem não pode estar vazio.");
+                return;
+            }
+
+            // Cria o objeto conforme o DTO esperado
+            var novoPost = {
+                id: self.crypto.randomUUID(),
+                userId: "e94b930c-b59c-445f-ad49-c37a4cbbc91e", // Substitua pelo ID real
+                contentId: self.crypto.randomUUID(),
+                publishedAt: new Date().toISOString(),
+                textPreview: texto,
+                likeCount: 0,
+                commentCount: 0
+            };
+
+            $.ajax({
+                url: 'http://feed.neurosky.com.br/api/Feed',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(novoPost),
+                success: function (resposta) {
+                    alert("Post enviado com sucesso!");
+                    $('#postagem').val(''); // Limpa o campo
+                },
+                error: function (erro) {
+                    console.error(erro);
+                    alert("Erro ao enviar o post.");
+                }
+            });
+        });
+    </script>
+}

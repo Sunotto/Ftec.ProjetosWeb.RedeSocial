@@ -1,0 +1,321 @@
+﻿@model FeedItemViewModel
+
+@{
+    var post = Model;
+}
+<script>
+    fetch('/api/Comentarios/post/@post.Id')
+            .then(response => response.json())
+            .then(data => {
+                console.log("Comentários recebidos:", data);
+                // aqui você renderiza na tela como quiser
+            })
+            .catch(error => console.error("Erro ao buscar comentários:", error));
+</script>
+
+<div class="col-sm-12">
+    <div class="card card-block card-stretch card-height">
+        <div class="card-body">
+            <div class="user-post-data">
+                <div class="d-flex justify-content-between">
+                    <div class="me-3">
+                        <img class="rounded-circle img-fluid" src="~/assets/images/user/01.jpg" alt="">
+                    </div>
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between">
+                            <div class="">
+                                <h5 class="mb-0 d-inline-block">Anna Sthesia</h5>
+                                <p class="mb-0 text-primary">Just Now</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <p>@post.TextPreview</p> @*texto do post*@
+            </div>
+            <div class="user-post">
+                <div class=" d-grid grid-rows-2 grid-flow-col gap-3"> 
+                    @* <div class="row-span-2 row-span-md-1">
+                        <img src="@post.LinkImagem" alt="post-image" class="img-fluid rounded w-100">
+                    </div> *@
+                </div>
+            </div>
+            <div class="comment-area mt-3">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="like-block position-relative d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="like-data">
+                                <div class="dropdown">
+                                    <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                                        <img src="~/assets/images/icon/01.png" class="img-fluid" alt="">
+                                    </span>
+                                    <div class="dropdown-menu py-2">
+                                        <a class="ms-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Like"><img src="~/assets/images/icon/01.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Love"><img src="~/assets/images/icon/02.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Happy"><img src="~/assets/images/icon/03.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="HaHa"><img src="~/assets/images/icon/04.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Think"><img src="~/assets/images/icon/05.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Sade"><img src="~/assets/images/icon/06.png" class="img-fluid" alt=""></a>
+                                        <a class="me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Lovely"><img src="~/assets/images/icon/07.png" class="img-fluid" alt=""></a>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="total-like-block ms-2 me-3">
+
+                                @* <script>
+                                    fetch('/api/Comentarios/post/@post.Id')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            console.log("Comentários recebidos:", data);
+                                            // aqui você renderiza na tela como quiser
+                                        })
+                                        .catch(error => console.error("Erro ao buscar comentários:", error));
+
+                                </script> *@
+
+                                <div class="total-like-block ms-2 me-3">
+                                    <div class="dropdown">
+                                        <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" id="like-count-@post.Id">
+                                            @post.LikeCount
+                                        </span>
+                                        @* ... menu dropdown de quem curtiu ... *@
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="total-comment-block">
+                            <div class="dropdown">
+                                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                                    @post.CommentCount
+                                </span>
+                                <div class="dropdown-menu"> @* lista de pessoas que comentaram *@
+                                    <a class="dropdown-item" href="#">Max Emum</a>
+                                    <a class="dropdown-item" href="#">Bill Yerds</a>
+                                    <a class="dropdown-item" href="#">Hap E. Birthday</a>
+                                    <a class="dropdown-item" href="#">Tara Misu</a>
+                                    <a class="dropdown-item" href="#">Midge Itz</a>
+                                    <a class="dropdown-item" href="#">Sal Vidge</a>
+                                    <a class="dropdown-item" href="#">Other</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr> @* Comentários *@
+                <ul class="post-comments list-inline p-0 m-0" id="comments-container-@post.Id">
+                    <li class="mb-2">
+                        <div class="d-flex">
+
+
+                            <div class="user-img">
+                                <img src="~/assets/images/user/02.jpg" alt="userimg" class="avatar-35 rounded-circle img-fluid"> @* Imagem do Usuário que comentou *@
+                            </div>
+                            <div class="comment-data-block ms-3">
+                                <h6>Monty Carlo</h6>
+                                <p class="mb-0">Lorem ipsum dolor sit amet</p>
+                                <div class="d-flex flex-wrap align-items-center comment-activity">
+                                    <a href="javascript:void();">like</a>
+                                    <a href="javascript:void();">reply</a>
+                                    <a href="javascript:void();">translate</a>
+                                    <span> 5 min </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex">
+                            <div class="user-img">
+                                <img src="~/assets/images/user/03.jpg" alt="userimg" class="avatar-35 rounded-circle img-fluid">
+                            </div>
+                            <div class="comment-data-block ms-3">
+                                <h6>Paul Molive</h6>
+                                <p class="mb-0">Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <form class="comment-text d-flex align-items-center mt-3" id="form-comentario-@post.Id">
+                    <input type="text" id="input-comentario-@post.Id" class="form-control rounded" placeholder="Escreva seu comentário...">
+                    <button type="submit" class="btn btn-primary ms-2">Enviar</button> @* Adicionado botão para clareza *@
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+     @section Scripts {
+    <script>
+        function carregarComentarios(postId) {
+            // Seleciona o container específico para este post
+            const container = document.getElementById(`comments-container-${postId}`);
+            if (!container) return;
+
+            container.innerHTML = '<li>Carregando comentários...</li>'; // Feedback para o usuário
+
+            fetch(`/api/Comentarios/post/${postId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Falha ao buscar os comentários.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    container.innerHTML = ''; // Limpa o "Carregando..."
+                    if (data.length === 0) {
+                        container.innerHTML = '<li>Nenhum comentário ainda. Seja o primeiro!</li>';
+                    } else {
+                        data.forEach(comentario => {
+                            const commentElement = document.createElement('li');
+                            commentElement.classList.add('mb-2');
+
+                            // Assumindo que você terá uma forma de obter o nome e a imagem do usuário
+                            // a partir do comentario.idUsuario. Por enquanto, usaremos dados estáticos.
+                            const userName = comentario.nomeUsuario || 'Usuário'; // Idealmente, viria no DTO
+                            const userImage = comentario.imagemUsuario || '/assets/images/user/02.jpg'; // Idealmente, viria no DTO
+
+                            commentElement.innerHTML = `
+                                <div class="d-flex">
+                                    <div class="user-img">
+                                        <img src="${userImage}" alt="userimg" class="avatar-35 rounded-circle img-fluid">
+                                    </div>
+                                    <div class="comment-data-block ms-3">
+                                        <h6>${userName}</h6>
+                                        <p class="mb-0">${comentario.conteudo}</p>
+                                        <div class="d-flex flex-wrap align-items-center comment-activity">
+                                            <a href="javascript:void(0);">like</a>
+                                            <a href="javascript:void(0);">reply</a>
+                                            <span>${new Date(comentario.dataComentario).toLocaleString()}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            container.appendChild(commentElement);
+                        });
+                    }
+                })
+                .catch(error => {
+                    container.innerHTML = '<li>Erro ao carregar comentários.</li>';
+                    console.error("Erro ao buscar comentários:", error);
+                });
+        }
+
+        function carregarUsuario(@post.UserId) {
+
+            fetch(`http://usuario.neurosky.com.br/api/` + @post.Id)
+                .then(response => response.json())
+                .then(data => {
+                    // data agora é um ARRAY de objetos
+                })
+                .catch(error => {
+                    container.innerHTML = "Erro ao carregar comentários.";
+                    console.error("Erro:", error);
+                });
+        }
+
+        function adicionarComentario(postId) {
+            const form = document.getElementById(`form-comentario-${postId}`);
+            const input = document.getElementById(`input-comentario-${postId}`);
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o recarregamento da página
+
+                const commentText = input.value.trim();
+                if (commentText === '') return;
+
+                // O ID do usuário logado deveria vir de algum lugar (ex: um campo oculto ou variável global)
+                const idUsuarioLogado = 'SEU_ID_DE_USUARIO_LOGADO'; // <<< SUBSTITUIR ISSO
+
+                const comentarioData = {
+                    idPost: postId,
+                    idUsuario: idUsuarioLogado,
+                    conteudo: commentText
+                };
+
+                fetch('/api/Comentarios', { // Assumindo POST /api/Comentarios para criar
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(comentarioData)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Falha ao enviar comentário.');
+                    }
+                    return response.json();
+                })
+                .then(novoComentario => {
+                    console.log('Comentário adicionado:', novoComentario);
+                    input.value = ''; // Limpa o campo
+                    carregarComentarios(postId); // Recarrega a lista de comentários
+                })
+                .catch(error => {
+                    console.error('Erro ao adicionar comentário:', error);
+                    alert('Não foi possível enviar seu comentário.');
+                });
+            });
+        }
+
+        function atualizarContagemCurtidas(postId) {
+            const countElement = document.getElementById(`like-count-${postId}`);
+            if(!countElement) return;
+
+            fetch(`/api/Curtidas/post/${postId}/count`)
+                .then(response => response.json())
+                .then(data => {
+                    // data aqui deve ser um número (ex: 15)
+                    countElement.innerText = `${data} Likes`;
+                })
+                .catch(error => console.error('Erro ao atualizar contagem de curtidas:', error));
+        }
+
+        function adicionarCurtida(postId, tipoReacao) {
+            // O ID do usuário logado deveria vir de algum lugar
+            const idUsuarioLogado = 'SEU_ID_DE_USUARIO_LOGADO'; // <<< SUBSTITUIR ISSO
+
+            const curtidaData = {
+                idPost: postId,
+                idUsuario: idUsuarioLogado,
+                tipoReacao: tipoReacao // Ex: "Like", "Love", etc.
+            };
+
+            fetch('/api/Curtidas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(curtidaData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    // Talvez o usuário já curtiu? A API deve tratar isso.
+                    throw new Error('Falha ao registrar curtida.');
+                }
+                return response.json();
+            })
+            .then(novaCurtida => {
+                console.log('Curtida adicionada:', novaCurtida);
+                atualizarContagemCurtidas(postId); // Atualiza a contagem na tela
+            })
+            .catch(error => {
+                console.error('Erro ao adicionar curtida:', error);
+                alert('Não foi possível registrar sua reação.');
+            });
+        }
+
+        // Adiciona o listener a todos os botões de reação do post
+        document.querySelectorAll(`#post-@post.Id .reaction-btn`).forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const postId = this.dataset.postId;
+                const reacao = this.dataset.reacao;
+                adicionarCurtida(postId, reacao);
+            });
+        });
+    </script>
+    } 

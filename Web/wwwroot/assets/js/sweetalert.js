@@ -3,7 +3,7 @@
 
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
-            confirmButton: 'btn btn-primary btn-lg',
+            AceitarButton: 'btn btn-primary btn-lg',
             cancelButton: 'btn btn-outline-primary btn-lg ml-2'
         },
         buttonsStyling: false,
@@ -25,7 +25,7 @@
         swalWithBootstrapButtons.fire({
             icon: 'success',
             title: 'Your form has been successfully copied!',
-            showConfirmButton: false,
+            showAceitarButton: false,
         })
     });
 
@@ -33,7 +33,7 @@
         swalWithBootstrapButtons.fire({
             icon: 'success',
             title: 'Your Templates has been successfully copied!',
-            showConfirmButton: false,
+            showAceitarButton: false,
         })
     });
     $('#basic-title').on('click', function() {
@@ -47,21 +47,21 @@
         swalWithBootstrapButtons.fire({
             icon: 'success',
             title: 'Intigrated successfully',
-            showConfirmButton: false,
+            showAceitarButton: false,
         })
     });
     $('#info').on('click', function() {
         swalWithBootstrapButtons.fire({
             icon: 'info',
             title: 'Good Job!',
-            showConfirmButton: false,
+            showAceitarButton: false,
         })
     });
     $('#warning').on('click', function() {
         swalWithBootstrapButtons.fire({
             icon: 'warning',
             title: 'Changes are not saved',
-            showConfirmButton: false,
+            showAceitarButton: false,
 
         })
     });
@@ -70,10 +70,10 @@
             icon: 'error',
             title: 'OOps!!',
             text: 'Something went Wrong',
-            showConfirmButton: false,
+            showAceitarButton: false,
         })
     });
-    $('#confirmation').on('click', function() {
+    $('#Aceitaration').on('click', function() {
         swalWithBootstrapButtons.fire({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this imaginary file!",

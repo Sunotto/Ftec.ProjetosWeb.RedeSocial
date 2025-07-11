@@ -21,7 +21,7 @@
                                     <img src="~/assets/images/user/1.jpg" alt="userimg" class="avatar-60 rounded-circle">
                                 </div>
                                 <form class="post-text ms-3 w-100 " data-bs-toggle="modal" data-bs-target="#post-modal" action="javascript:void();">
-                                    <input type="text" class="form-control rounded" placeholder="Write something here..." style="border:none;">
+                                    <input type="text" class="form-control rounded" placeholder="No que está pensando?..." style="border:none;">
                                 </form>
                             </div>
                             <hr>
@@ -45,8 +45,8 @@
                                             <div class="user-img">
                                                 <img src="~/assets/images/user/1.jpg" alt="userimg" class="avatar-60 rounded-circle img-fluid">
                                             </div>
-                                            <form class="post-text ms-3 w-100" action="javascript:void();">
-                                                <input type="text" class="form-control rounded" placeholder="Write something here..." style="border:none;">
+                                            <form id="formPostagem" class="post-text ms-3 w-100" action="javascript:void();">
+                                                <input id="postagem" type="text" class="form-control rounded" placeholder="No que está pensando?..." style="border:none;">
                                             </form>
                                         </div>
                                         <hr>
@@ -56,7 +56,7 @@
                                             </li>
                                         </ul>
                                         <hr>
-                                        <button type="submit" class="btn btn-primary d-block w-100 mt-3">Postar</button>
+                                        <button id="btnPostar" type="submit" class="btn btn-primary d-block w-100 mt-3">Postar</button>
                                     </div>
                                 </div>
                             </div>
@@ -100,21 +100,21 @@
                                 <img src="~/assets/images/page-img/s2.jpg" alt="story-img" class="rounded-circle img-fluid">
                                 <div class="stories-data ms-3">
                                     <h5>Anna Mull</h5>
-                                    <p class="mb-0">1 hour ago</p>
+                                    <p class="mb-0">1 horas atrás</p>
                                 </div>
                             </li>
                             <li class="d-flex mb-3 align-items-center">
                                 <img src="~/assets/images/page-img/s3.jpg" alt="story-img" class="rounded-circle img-fluid">
                                 <div class="stories-data ms-3">
                                     <h5>Ira Membrit</h5>
-                                    <p class="mb-0">4 hour ago</p>
+                                    <p class="mb-0">4 horass atrás</p>
                                 </div>
                             </li>
                             <li class="d-flex align-items-center">
                                 <img src="~/assets/images/page-img/s1.jpg" alt="story-img" class="rounded-circle img-fluid">
                                 <div class="stories-data ms-3">
                                     <h5>Bob Frapples</h5>
-                                    <p class="mb-0">9 hour ago</p>
+                                    <p class="mb-0">9 horas atrás</p>
                                 </div>
                             </li>
                         </ul>
@@ -130,7 +130,10 @@
     </div>
 </div>
 
+
+
 @section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Backend Bundle JavaScript -->
     <script src="~/assets/js/libs.min.js"></script>
     <!-- slider JavaScript -->
@@ -146,4 +149,49 @@
     <script src="~/assets/js/app.js"></script>
     <script src="~/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
     <script src="~/assets/js/lottie.js"></script>
+
+    <script>
+        $('#btnPostar').on('click', function () {
+            $('#formPostagem').submit(); // Dispara o submit manualmente
+        });
+
+        $('#formPostagem').on('submit', function (e) {
+            e.preventDefault(); // Impede o envio tradicional do form
+
+            // Captura o conteúdo e remove espaços em branco do início/fim
+            var texto = $('#postagem').val().trim();
+
+            // Validação: se estiver vazio, mostra alerta e para o envio
+            if (texto === "") {
+                alert("O campo de postagem não pode estar vazio.");
+                return;
+            }
+
+            // Cria o objeto conforme o DTO esperado
+            var novoPost = {
+                id: self.crypto.randomUUID(),
+                userId: "e94b930c-b59c-445f-ad49-c37a4cbbc91e", // Substitua pelo ID real
+                contentId: self.crypto.randomUUID(),
+                publishedAt: new Date().toISOString(),
+                textPreview: texto,
+                likeCount: 0,
+                commentCount: 0
+            };
+
+            $.ajax({
+                url: 'http://feed.neurosky.com.br/api/Feed',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(novoPost),
+                success: function (resposta) {
+                    alert("Post enviado com sucesso!");
+                    $('#postagem').val(''); // Limpa o campo
+                },
+                error: function (erro) {
+                    console.error(erro);
+                    alert("Erro ao enviar o post.");
+                }
+            });
+        });
+    </script>
 }

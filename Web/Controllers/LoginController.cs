@@ -21,35 +21,33 @@ namespace Ftec.ProjetosWeb.RedeSocial.Controllers
         [HttpPost]
         public async Task<IActionResult> Autenticar(string username, string senha)
         {
-            var login = new
+            // 🔥 MOCK SIMPLES
+            if (username == "usernametemporario" && senha == "123456")
             {
-                Username = username,
-                Senha = senha
-            };
+                var tokenMock = "mocked-token-123"; // simula um JWT
 
-            var content = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json");
+                var usuarioMock = new UsuarioViewModel
+                {
+                    NomeCompleto = "Luan Souza",
+                    Email = "luande2010@gmail.com",
+                    Username = "usernametemporario",
+                    Telefone = "54992009460",
+                    Genero = "Masculino",
+                    Descricao = "Testando aqui",
+                    Foto = "https://www.svgrepo.com/show/26473/avatar.svg",
+                    DataNascimento = new DateTime(2001, 05, 06),
+                };
 
-            var response = await _httpClient.PostAsync("api/Usuario/autenticar", content);
+                HttpContext.Session.SetString("Token", tokenMock);
+                HttpContext.Session.SetString("Usuario", JsonConvert.SerializeObject(usuarioMock));
 
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-                var dados = JsonConvert.DeserializeObject<AutenticacaoResposta>(json);
-
-                // Armazene o token em Cookie, Session etc
-                HttpContext.Session.SetString("Token", dados.Token);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Feed", "Feed");
             }
 
             ViewBag.Erro = "Usuário ou senha inválidos";
-            return View("Login");
+            return View("SignIn");
         }
 
-        [HttpGet]
-        public IActionResult Signup()
-        {
-            return View();
-        }
 
         [HttpPost]
         public IActionResult Signup(SignUpViewModel model)
@@ -83,14 +81,6 @@ namespace Ftec.ProjetosWeb.RedeSocial.Controllers
         }
 
         public IActionResult SignIn()
-        {
-            return View();
-        }
-        public IActionResult RecoverPassword()
-        {
-            return View();
-        }
-        public IActionResult AceitarMail()
         {
             return View();
         }

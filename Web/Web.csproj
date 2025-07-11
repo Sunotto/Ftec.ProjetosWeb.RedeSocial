@@ -7,6 +7,26 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Views\Home\**" />
+	  <Content Remove="Views\Home\**" />
+	  <EmbeddedResource Remove="Views\Home\**" />
+	  <None Remove="Views\Home\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Controllers\ComentariosController.cs" />
+	  <Compile Remove="Views\Feed\Index.cshtml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="Views\Feed\Index.cshtml" />
+	  <Content Remove="Views\Login\ConfirmMail.cshtml" />
+	  <Content Remove="Views\Login\RecoverPassword.cshtml" />
+	  <Content Remove="Views\Profile\AccountSettings.cshtml" />
+	  <Content Remove="Views\Profile\PrivacySettings.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>

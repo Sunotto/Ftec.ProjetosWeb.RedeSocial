@@ -51,18 +51,18 @@
                                 <ul class="swiper-wrapper list-inline m-0 p-0 ">
                                     <li class="swiper-slide">
                                         <img src="~/assets/images/login/1.png" class="img-fluid mb-4" alt="logo">
-                                        <h4 class="mb-1 text-white">Find new amigos</h4>
-                                        <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                                        <h4 class="mb-1 text-white">Encontre novos amigos</h4>
+                                        <p>Conecte-se com quem realmente importa.</p>
                                     </li>
                                     <li class="swiper-slide">
                                         <img src="~/assets/images/login/2.png" class="img-fluid mb-4" alt="logo">
-                                        <h4 class="mb-1 text-white">Connect with the world</h4>
-                                        <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                                        <h4 class="mb-1 text-white">Compartilhe suas ideias</h4>
+                                        <p>Um mundo de inspiração e conversas espera por você.</p>
                                     </li>
                                     <li class="swiper-slide">
                                         <img src="~/assets/images/login/3.png" class="img-fluid mb-4" alt="logo">
-                                        <h4 class="mb-1 text-white">Create new events</h4>
-                                        <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                                        <h4 class="mb-1 text-white">Crie laços verdadeiros</h4>
+                                        <p>Explore comunidades que te inspiram. Sua próxima grande conexão começa agora.</p>
                                     </li>
                                 </ul>
                             </div>
@@ -106,8 +106,15 @@
                                     <input class="form-control mb-0" asp-for="Telefone" placeholder="Phone number" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" asp-for="Genero">Gênero</label>
-                                    <input class="form-control mb-0" asp-for="Genero" placeholder="Ex: M ou F" />
+                                    <label class="form-label" asp-for="Genero">Gênero</label><br/>
+                                    <input type="radio" asp-for="Genero" id="feminino" name="genero" value="feminino">
+                                    <label for="feminino">Feminino</label><br>
+                                    <input type="radio" asp-for="Genero" id="masculino" name="genero" value="masculino">
+                                    <label for="masculino">Masculino</label><br>
+                                    <input type="radio" asp-for="Genero" id="nao_binario" name="genero" value="nao_binario">
+                                    <label for="nao_binario">Não Binário</label><br>
+                                    <input type="radio" asp-for="Genero" id="prefiro_nao_dizer" name="genero" value="prefiro_nao_dizer">
+                                    <label for="prefiro_nao_dizer">Prefiro não dizer</label><br>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" asp-for="Descricao">Descrição</label>
